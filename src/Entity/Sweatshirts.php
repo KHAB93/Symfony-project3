@@ -18,15 +18,29 @@ class Sweatshirts
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $price = null;
+    private ?float $price = null;
 
     #[ORM\Column(length: 50)]
     private ?string $size = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
-    private ?string $stock = null;
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $stock = null;
 
-    private $image;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imagePath = null;
+
+    // Getter et Setter pour imagePath...
+    
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(string $imagePath): self
+    {
+        $this->imagePath = $imagePath;
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -81,6 +95,7 @@ class Sweatshirts
         return $this;
     }
 
+
     public function getImage(): ?string
     {
         return $this->image;
@@ -92,5 +107,6 @@ class Sweatshirts
 
         return $this;
     }
+
 
 }

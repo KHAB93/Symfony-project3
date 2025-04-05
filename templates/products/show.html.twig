@@ -5,8 +5,9 @@
 {% block body %}
 <div class="product-details">
     <h1>{{ sweatshirt.name }}</h1>
-    <img src="{{ asset('images/' ~ sweatshirt.image) }}" alt="{{ sweatshirt.name }}" style="width: 300px;">
     
+    
+    <img src="{{ sweatshirt.imagePath is not null ? asset(sweatshirt.imagePath) : asset('images/default.png') }}" alt="{{ sweatshirt.name }}" />
     <p>Prix : {{ sweatshirt.price }} €</p>
     
     <!-- Form for adding to cart -->
@@ -31,7 +32,7 @@
     
     <a href="{{ path('app_products') }}" class="btn btn-secondary">Retour à la boutique</a>
 
-    {% if sweatshirt.image %}
+    {% if sweatshirt.imagePath %}
         <p>ID de l'image : {{ sweatshirt.image_id }}</p>
         <p>ID du produit : {{ sweatshirt.id }}</p>
     {% else %}
