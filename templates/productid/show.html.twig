@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du produit - {{ sweatshirt.name }}{% endblock %}
+
+{% block body %}
+<div class="product-details">
+    <h1>{{ sweatshirt.name }}</h1>
+    <img src="{{ asset('images/' ~ sweatshirt.image) }}" alt="{{ sweatshirt.name }}" style="width: 300px;">
+    
+    <p>Prix : {{ sweatshirt.price }} €</p>
+    
+    <!-- Form for adding to cart -->
+    <form action="{{ path('add_to_cart', {'id': sweatshirt.id}) }}" method="POST">
+        <div class="size-selection">
+            <label for="size">Taille :</label>
+            <select id="size" name="size">
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+        </div>
+
+        <input type="number" name="quantity" value="1" min="1" style="width: 50px;">
+
+        <button type="submit">AJOUTER AU PANIER</button>
+    </form>
+
+    <p>Description : {{ sweatshirt.description|default('Aucune description disponible.') }}</p>
+    
+    <a href="{{ path('app_products') }}" class="btn btn-secondary">Retour à la boutique</a>
+
+    {% if sweatshirt.image %}
+        <p>ID de l'image : {{ sweatshirt.image_id }}</p>
+        <p>ID du produit : {{ sweatshirt.id }}</p>
+    {% else %}
+        <img src="{{ asset('images/default.png') }}" alt="Default Image" style="width: 300px;">
+        <p>ID de l'image : N/A</p>
+        <p>ID du produit : {{ sweatshirt.id }}</p>
+    {% endif %}
+</div>
+{% endblock %}

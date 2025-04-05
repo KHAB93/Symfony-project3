@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% block stylesheets %}
+<style>
+    body {
+        font-family: sans-serif;
+        background-color: #f9f9f9; /* Couleur de fond */
+    }
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav {
+    text-align: right; 
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+         display: inline-block;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 10px; 
+    }
+    .form-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    }
+    dejainscrit{
+        margin-top: 20px;
+        text-align: center;
+        font-size: 0.9em; 
+    }
+    footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 0.9em; 
+    }
+</style>
+{% endblock %}
+
+<div class="example-wrapper">
+    <div class="logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo de Stubborn" style="max-width: 20%; height: auto;">
+    </div>
+
+ <nav>
+        <ul>
+                <li><a href="{{ path('Accueilc') }}">Accueil</a></li>
+                <li><a href="{{ path('Register') }}">S’inscrire</a></li>
+                <li><a href="{{ path('Login') }}">Se connecter</a></li>
+        </ul>
+    </nav>
+
+     
+{{ form(registerForm)}}
+<div class="form-container">
+    {{ form_start(registerForm) }}
+        <button type="submit">Créer un compte</button>
+    {{ form_end(registerForm) }}
+</div>
+
+<div class="dejainscrit">
+        <p>Déjà inscrit?</p>
+        <button type="submit">Se connecter</button>
+</div>
+    
+    <footer>
+        <div class="container mt-5">
+        <h1>Informations de la Société</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Nom de la société : <strong>Stubborn</strong></h5>
+                <p class="card-text">Adresse : <strong>Piccadilly Circus, London W1J 0DA, Royaume-Uni</strong></p>
+                <p class="card-text">Adresse de contact : <strong>stubborn@blabla.com</strong></p>
+                <p class="card-text">Slogan : <strong>Don't compromise on your look</strong></p>
+            </div>
+        </div>
+    </div>
+    </footer>
+</div>
+{% endblock %}

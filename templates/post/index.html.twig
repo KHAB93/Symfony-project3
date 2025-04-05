@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block stylesheets%}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if sweatshirts %}
+        {% for sweatshirts in sweatshirts %}
+            <tr>
+                <td>{{ sweatshirts.id}}</td>
+                <td>{{ sweatshirts.name}}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="2">Pas de sweatshirts pour le moment</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+        
+
+
+
+
+
+
+    

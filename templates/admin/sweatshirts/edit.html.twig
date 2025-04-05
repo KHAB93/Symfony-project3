@@ -1,0 +1,16 @@
+{# templates/admin/sweatshirts/edit.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un Sweatshirt{% endblock %}
+
+{% block body %}
+    <h1>Modifier le Sweatshirt "{{ sweatshirt.name }}"</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('admin_sweatshirts_list') }}">Retour à la liste</a>
+{% endblock %}

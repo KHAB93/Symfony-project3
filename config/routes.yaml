@@ -3,3 +3,73 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+Accueilc:
+    path: /accueilc
+    controller: App\Controller\AccueilcController::index
+
+Accueilnc:
+    path: /accueilnc
+    controller: App\Controller\AccueilncController::index
+
+Register:
+    path: /register
+    controller: App\Controller\RegisterController::index
+
+RegisterSave:
+    path: /register/save
+    controller: App\Controller\RegisterController::save
+
+login:
+    path: /login
+    controller: App\Controller\LoginController::login
+
+LoginSave:
+    path: /login/save
+    controller: App\Controller\LoginController::save
+Cart:
+    path: /cart
+    controller: App\Controller\CartController::index
+
+app_cart:
+    path: /cart
+    controller: App\Controller\CartController::index
+
+Products:
+    path: /products
+    controller: App\Controller\ProductsController::index
+
+Productid:
+    path: /productid
+    controller: App\Controller\ProductidController::index
+
+admin:
+    path: /admin
+    controller: App\Controller\AdminController::index
+
+admin_add:
+  path: /admin/add
+  controller: App\Controller\AdminController::add
+
+Sweatshirts:
+  path: /sweatshirts
+  controller: App\Controller\SweatshirtsController::index
+
+admin_sweatshirts_list:
+    path: /admin/sweatshirts
+    controller: App\Controller\AdminController::index
+
+admin_sweatshirt_edit:
+    path: /admin/sweatshirts/{id}/edit
+    controller: App\Controller\AdminController::edit
+
+admin_sweatshirt_delete:
+    path: /admin/sweatshirts/{id}/delete
+    controller: App\Controller\AdminController::delete
+
+admin_sweatshirt_add:
+    path: /admin/add
+    controller: App\Controller\AdminController::add
+    
+logout:
+    path: /logout

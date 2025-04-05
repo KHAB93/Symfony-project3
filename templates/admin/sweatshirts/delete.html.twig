@@ -1,0 +1,18 @@
+{# templates/admin/sweatshirts/delete.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer un Sweatshirt{% endblock %}
+
+{% block body %}
+    <h1>Supprimer un Sweatshirt</h1>
+
+    <p>Êtes-vous sûr de vouloir supprimer le sweatshirt "{{ sweatshirt.name }}" ?</p>
+
+    <form action="{{ path('admin_sweatshirt_delete', {'id': sweatshirt.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sweatshirt ?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ sweatshirt.id) }}">
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+    </form>
+
+    <a href="{{ path('admin') }}">Retour à la liste</a>
+{% endblock %}

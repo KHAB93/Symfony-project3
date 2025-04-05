@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body {
+        font-family: sans-serif;
+        background-color: #f9f9f9; /* Couleur de fond */
+    }
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav {
+    text-align: right; /* Aligne le contenu du nav à droite */
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+         display: inline-block;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 10px; /* Espacement entre les liens du menu */
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px; /* Espace au-dessus de la table */
+        table-layout: fixed; 
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        vertical-align: top;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        width: 33.33%;  
+    }
+    .sweatshirt-container {
+        display: flex;
+        justify-content: space-between; /* Aligne les sweatshirts avec un espace entre eux */
+    }
+    .sweatshirt {
+        width: 30%; /* Ajustez la largeur selon vos besoins */
+        border: 1px solid #ccc; /* Pour visualiser */
+        padding: 10px; /* Espacement interne */
+        box-sizing: border-box; /* Pour inclure la bordure dans la largeur totale */
+    }
+    footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 0.9em; /* Taille de police pour le pied de page */
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <div class="logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo de Stubborn" style="max-width: 20%; height: auto;">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{{ path('Accueilc') }}">Accueil</a></li>
+            {% if user is defined and user.isAuthenticated %}
+                <li><a href="{{ path('Products') }}">Boutique</a></li>
+                <li><a href="{{ path('Cart') }}">Panier</a></li>
+                <li><a href="{{ path('Login') }}">Se déconnecter</a></li>
+            {% else %}
+                <li><a href="{{ path('Register') }}">S’inscrire</a></li>
+                <li><a href="{{ path('Login') }}">Se connecter</a></li>
+                <li><a href="{{ path('admin') }}">Administrateur</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    <table>
+        <thead>
+            <tr>
+                {% if user is defined and user.isAuthenticated %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        <h1>{{ sweatshirt.nom }}</h1>
+    <img src="{{ asset(sweatshirt.image) }}" alt="{{ sweatshirt.nom }}">
+    <p>Prix : {{ sweatshirt.prix }} €</p>
+
+    <form action="{{ path('cart') }}" method="POST">
+    <input type="hidden" name="id" value="{{ sweatshirts.id }}">
+    <label for="size">Taille:</label>
+    <select name="size" id="size">
+        <option value="XS">XS</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+    <label for="quantity">Quantité:</label>
+    <input type="number" name="quantity" id="quantity" min="1" value="1">
+    <button type="submit">AJOUTER AU PANIER</button>
+</form>
+        </tbody>
+    </table>
+
+    <footer>
+        <p>Informations de la société</p>
+    </footer>
+</div>
+{% endblock %}

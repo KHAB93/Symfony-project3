@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+
+
+{% block stylesheets %}
+<style>
+    body {
+        font-family: sans-serif;
+        background-color: #f9f9f9; /* Couleur de fond */
+    }
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav {
+    text-align: right; /* Aligne le contenu du nav à droite */
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+         display: inline-block;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 10px; /* Espacement entre les liens du menu */
+    }
+    .form-container {
+        width: 300px; /* Définissez une largeur pour le formulaire */
+        margin: 0 auto; /* Centre le formulaire horizontalement */
+        padding: 20px; /* Ajoutez un peu d'espacement interne */
+        border: 1px solid #ccc; /* Optionnel : bordure pour visualiser le formulaire */
+        border-radius: 5px; /* Optionnel : arrondir les coins */
+        background-color: #f9f9f9; /* Optionnel : couleur de fond */
+    }
+     footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 0.9em; /* Taille de police pour le pied de page */
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="example-wrapper">
+    <div class="logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo de Stubborn" style="max-width: 20%; height: auto;">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{{ path('Accueilc') }}">Accueil</a></li>
+            {% if user is defined and user.isAuthenticated %}
+                <li><a href="{{ path('Products') }}">Boutique</a></li>
+                <li><a href="{{ path('Cart') }}">Panier</a></li>
+                <li><a href="{{ path('login') }}">Se déconnecter</a></li>
+            {% else %}
+                <li><a href="{{ path('Register') }}">S’inscrire</a></li>
+                <li><a href="{{ path('login') }}">Se connecter</a></li>
+                <li><a href="{{ path('admin') }}">Administrateur</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <h1>Register</h1>
+
+    <div class="form-container">
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Créer un compte</button>
+    {{ form_end(registrationForm) }}
+
+    <!-- Mention pas encore inscrit -->
+<div>
+    <p>Déjà inscrit ?</p>
+    <a href="{{ path('Register') }}">Se connecter</a>
+</div>
+    </div>
+
+    <footer>
+        <div class="container mt-5">
+        <h1>Informations de la Société</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Nom de la société : <strong>Stubborn</strong></h5>
+                <p class="card-text">Adresse : <strong>Piccadilly Circus, London W1J 0DA, Royaume-Uni</strong></p>
+                <p class="card-text">Adresse de contact : <strong>stubborn@blabla.com</strong></p>
+                <p class="card-text">Slogan : <strong>Don't compromise on your look</strong></p>
+            </div>
+        </div>
+    </div>
+    </footer>
+{% endblock %}
